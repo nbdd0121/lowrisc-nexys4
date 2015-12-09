@@ -12,6 +12,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports rxd]
 set_property PACKAGE_PIN D4 [get_ports txd]
 set_property IOSTANDARD LVCMOS33 [get_ports txd]
 
+# Tracer UART Pins
+set_property PACKAGE_PIN E18 [get_ports trace_rxd]
+set_property IOSTANDARD LVCMOS33 [get_ports trace_rxd]
+set_property PACKAGE_PIN D18 [get_ports trace_txd]
+set_property IOSTANDARD LVCMOS33 [get_ports trace_txd]
+
 # SD/SPI Pins
 set_property PACKAGE_PIN D2 [get_ports spi_cs]
 set_property IOSTANDARD LVCMOS33 [get_ports spi_cs]
