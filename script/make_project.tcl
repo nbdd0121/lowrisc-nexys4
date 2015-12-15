@@ -136,7 +136,7 @@ create_ip -name axi_uartlite -vendor xilinx.com -library ip -version 2.0 -module
 set_property -dict [list \
                         CONFIG.PARITY {Odd} \
                         CONFIG.C_S_AXI_ACLK_FREQ_HZ_d {25} \
-                        CONFIG.C_BAUDRATE {460800} ] \
+                        CONFIG.C_BAUDRATE {230400} ] \
     [get_ips axi_uartlite_0]
 generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_uartlite_0/axi_uartlite_0.xci]
 
