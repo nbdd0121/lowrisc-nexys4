@@ -127,6 +127,21 @@ set_property -dict [list \
 generate_target {instantiation_template} \
     [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci]
 
+#BRAM Controller for Video Memory
+create_ip -name axi_bram_ctrl -vendor xilinx.com -library ip -module_name axi_bram_ctrl_1
+set_property -dict [list \
+                        CONFIG.DATA_WIDTH $io_data_width \
+                        CONFIG.ID_WIDTH {0} \
+                        CONFIG.MEM_DEPTH {65536} \
+                        CONFIG.PROTOCOL {AXI4LITE} \
+                        CONFIG.BMG_INSTANCE {EXTERNAL} \
+                        CONFIG.SINGLE_PORT_BRAM {1} \
+                        CONFIG.SUPPORTS_NARROW_BURST {0} \
+                        CONFIG.ECC_TYPE {0} \
+                       ] [get_ips axi_bram_ctrl_1]
+generate_target {instantiation_template} \
+    [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_bram_ctrl_1/axi_bram_ctrl_1.xci]
+
 # Memory Controller
 create_ip -name mig_7series -vendor xilinx.com -library ip -module_name mig_7series_0
 set_property CONFIG.XML_INPUT_FILE [file normalize $origin_dir/script/mig_config.prj] [get_ips mig_7series_0]

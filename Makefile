@@ -20,8 +20,8 @@ osd_dir = $(base_dir)/opensocdebug/hardware
 
 project_name = lowrisc-chip-imp
 BACKEND ?= lowrisc_chip.LowRISCBackend
-CONFIG ?= Nexys4DebugConfig
-#CONFIG ?= Nexys4Config
+#CONFIG ?= Nexys4DebugConfig
+CONFIG ?= Nexys4Config
 
 VIVADO = vivado
 
@@ -204,7 +204,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard
+EXAMPLES = hello trace boot dram sdcard video
 
 $(EXAMPLES):  $(lowrisc_headers)
 	$(MAKE) -C examples $@.hex
