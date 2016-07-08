@@ -12,6 +12,7 @@
 #define SYS_write 64
 #define SYS_exit 93
 #define SYS_stats 1234
+#define SYS_cycle 1235
 
 // initialized in crt.S
 int have_vec;
@@ -104,6 +105,8 @@ long handle_trap(long cause, long epc, long regs[32])
     tohost_exit(regs[10]);
   else if (regs[17] == SYS_stats)
     sys_ret = handle_stats(regs[10]);
+  else if (regs[17] == SYS_cycle)
+    sys_ret = read_csr_safe(mcycle);
   else
     sys_ret = handle_frontend_syscall(regs[17], regs[10], regs[11], regs[12]);
 
@@ -130,6 +133,11 @@ void exit(int code)
 void setStats(int enable)
 {
   syscall(SYS_stats, enable, 0, 0);
+}
+
+uint64_t readCycle()
+{
+  return syscall(SYS_cycle, 0, 0, 0);
 }
 
 void printstr(const char* s)
@@ -189,7 +197,7 @@ int putchar(int ch)
 
   buf[buflen++] = ch;
 
-  if (ch == '\n' || buflen == sizeof(buf))
+  //if (ch == '\n' || buflen == sizeof(buf))
   {
     syscall(SYS_write, 1, (long)buf, buflen);
     buflen = 0;
