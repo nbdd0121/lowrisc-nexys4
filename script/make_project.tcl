@@ -179,47 +179,15 @@ generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs
 # VGA Clock Generator
 create_ip -name clk_wiz -vendor xilinx.com -library ip -module_name clk_wiz_vga
 set_property -dict [list \
-                        CONFIG.PRIM_IN_FREQ {25.000} \
-                        CONFIG.CLKOUT2_USED {true} \
-                        CONFIG.CLKOUT3_USED {true} \
-                        CONFIG.CLKOUT4_USED {true} \
-                        CONFIG.CLKOUT5_USED {true} \
-                        CONFIG.CLKOUT6_USED {true} \
-                        CONFIG.CLKOUT7_USED {true} \
-                        CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {40} \
-                        CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {65} \
-                        CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {74.25} \
-                        CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {83.48} \
-                        CONFIG.CLKOUT5_REQUESTED_OUT_FREQ {108} \
-                        CONFIG.CLKOUT6_REQUESTED_OUT_FREQ {148.50} \
-                        CONFIG.CLKOUT7_REQUESTED_OUT_FREQ {193.16} \
+                        CONFIG.PRIM_IN_FREQ {25} \
+                        CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {128} \
                         CONFIG.CLKIN1_JITTER_PS {400.0} \
                         CONFIG.MMCM_DIVCLK_DIVIDE {1} \
-                        CONFIG.MMCM_CLKFBOUT_MULT_F {47.250} \
+                        CONFIG.MMCM_CLKFBOUT_MULT_F {32.000} \
                         CONFIG.MMCM_CLKIN1_PERIOD {40.0} \
-                        CONFIG.MMCM_CLKOUT0_DIVIDE_F {29.500} \
-                        CONFIG.MMCM_CLKOUT0_DUTY_CYCLE {0.500} \
-                        CONFIG.MMCM_CLKOUT1_DIVIDE {18} \
-                        CONFIG.MMCM_CLKOUT2_DIVIDE {16} \
-                        CONFIG.MMCM_CLKOUT3_DIVIDE {14} \
-                        CONFIG.MMCM_CLKOUT4_DIVIDE {11} \
-                        CONFIG.MMCM_CLKOUT5_DIVIDE {8} \
-                        CONFIG.MMCM_CLKOUT6_DIVIDE {6} \
-                        CONFIG.NUM_OUT_CLKS {7} \
-                        CONFIG.CLKOUT1_JITTER {220.879} \
-                        CONFIG.CLKOUT1_PHASE_ERROR {222.060} \
-                        CONFIG.CLKOUT2_JITTER {204.399} \
-                        CONFIG.CLKOUT2_PHASE_ERROR {222.060} \
-                        CONFIG.CLKOUT3_JITTER {201.342} \
-                        CONFIG.CLKOUT3_PHASE_ERROR {222.060} \
-                        CONFIG.CLKOUT4_JITTER {197.950} \
-                        CONFIG.CLKOUT4_PHASE_ERROR {222.060} \
-                        CONFIG.CLKOUT5_JITTER {192.017} \
-                        CONFIG.CLKOUT5_PHASE_ERROR {222.060} \
-                        CONFIG.CLKOUT6_JITTER {184.552} \
-                        CONFIG.CLKOUT6_PHASE_ERROR {222.060} \
-                        CONFIG.CLKOUT7_JITTER {178.155} \
-                        CONFIG.CLKOUT7_PHASE_ERROR {222.060}] \
+                        CONFIG.MMCM_CLKOUT0_DIVIDE_F {6.250} \
+                        CONFIG.CLKOUT1_JITTER {272.470} \
+                        CONFIG.CLKOUT1_PHASE_ERROR {265.359}] \
     [get_ips clk_wiz_vga]
 generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs/sources_1/ip/clk_wiz_vga_1/clk_wiz_vga.xci]
 
