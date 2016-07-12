@@ -17,6 +17,7 @@ generated_dir = $(abspath ./generated-src)
 
 glip_dir = $(base_dir)/opensocdebug/glip/src
 osd_dir = $(base_dir)/opensocdebug/hardware
+example_dir = $(base_dir)/fpga/bare_metal/examples
 
 project_name = lowrisc-chip-imp
 BACKEND ?= lowrisc_chip.LowRISCBackend
@@ -204,22 +205,13 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard video
+EXAMPLES = hello trace boot dram sdcard jump video
 
 $(EXAMPLES):  $(lowrisc_headers)
-	$(MAKE) -C examples $@.hex
-	cp examples/$@.hex $(boot_mem) && make bit-update
+	FPGA_DIR=$(proj_dir) $(MAKE) -C $(example_dir) $@.hex
+	cp $(example_dir)/$@.hex $(boot_mem) && make bit-update
 
 .PHONY: $(EXAMPLES)
-
-#--------------------------------------------------------------------
-# BBL
-#--------------------------------------------------------------------
-
-bbl:
-	cd bbl && make
-
-.PHONY: bbl
 
 #--------------------------------------------------------------------
 # Clean up
@@ -227,11 +219,10 @@ bbl:
 
 clean:
 	$(info To clean everything, including the Vivado project, use 'make cleanall')
-	rm -rf *.log *.jou $(junk)
+	-rm -rf *.log *.jou $(junk)
 
 cleanall: clean
-	rm -fr $(project_name)
-	cd examples && make clean
-	cd bbl && make clean
+	-rm -fr $(project)
+	-rm -fr $(project_name)
 
 .PHONY: clean cleanall
