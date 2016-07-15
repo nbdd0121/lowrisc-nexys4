@@ -54,6 +54,9 @@ set files [list \
                [file normalize $base_dir/socip/nasti/nasti_lite_writer.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_mux.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_slicer.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_data_mover.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_bram_ctrl.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_lite_bram_ctrl.sv ] \
                [file normalize $base_dir/socip/util/arbiter.sv ] \
                [file normalize $base_dir/src/main/verilog/debug_system.sv] \
                [file normalize $osd_dir/interconnect/common/debug_ring_expand.sv ] \
@@ -127,21 +130,6 @@ set_property -dict [list \
 generate_target {instantiation_template} \
     [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci]
 
-#BRAM Controller for Video Memory
-create_ip -name axi_bram_ctrl -vendor xilinx.com -library ip -module_name axi_bram_ctrl_1
-set_property -dict [list \
-                        CONFIG.DATA_WIDTH $io_data_width \
-                        CONFIG.ID_WIDTH {0} \
-                        CONFIG.MEM_DEPTH {65536} \
-                        CONFIG.PROTOCOL {AXI4LITE} \
-                        CONFIG.BMG_INSTANCE {EXTERNAL} \
-                        CONFIG.SINGLE_PORT_BRAM {1} \
-                        CONFIG.SUPPORTS_NARROW_BURST {0} \
-                        CONFIG.ECC_TYPE {0} \
-                       ] [get_ips axi_bram_ctrl_1]
-generate_target {instantiation_template} \
-    [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_bram_ctrl_1/axi_bram_ctrl_1.xci]
-
 # Memory Controller
 create_ip -name mig_7series -vendor xilinx.com -library ip -module_name mig_7series_0
 set_property CONFIG.XML_INPUT_FILE [file normalize $origin_dir/script/mig_config.prj] [get_ips mig_7series_0]
@@ -180,14 +168,14 @@ generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs
 create_ip -name clk_wiz -vendor xilinx.com -library ip -module_name clk_wiz_vga
 set_property -dict [list \
                         CONFIG.PRIM_IN_FREQ {25} \
-                        CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {128} \
+                        CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {125} \
                         CONFIG.CLKIN1_JITTER_PS {400.0} \
                         CONFIG.MMCM_DIVCLK_DIVIDE {1} \
-                        CONFIG.MMCM_CLKFBOUT_MULT_F {32.000} \
+                        CONFIG.MMCM_CLKFBOUT_MULT_F {40.000} \
                         CONFIG.MMCM_CLKIN1_PERIOD {40.0} \
-                        CONFIG.MMCM_CLKOUT0_DIVIDE_F {6.250} \
-                        CONFIG.CLKOUT1_JITTER {272.470} \
-                        CONFIG.CLKOUT1_PHASE_ERROR {265.359}] \
+                        CONFIG.MMCM_CLKOUT0_DIVIDE_F {8.000} \
+                        CONFIG.CLKOUT1_JITTER {220.126} \
+                        CONFIG.CLKOUT1_PHASE_ERROR {237.727}] \
     [get_ips clk_wiz_vga]
 generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs/sources_1/ip/clk_wiz_vga_1/clk_wiz_vga.xci]
 

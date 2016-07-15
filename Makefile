@@ -58,6 +58,9 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti/nasti_lite_writer.sv \
 	$(base_dir)/socip/nasti/nasti_mux.sv \
 	$(base_dir)/socip/nasti/nasti_slicer.sv \
+	$(base_dir)/socip/nasti/nasti_data_mover.sv \
+	$(base_dir)/socip/nasti/nasti_bram_ctrl.sv \
+	$(base_dir)/socip/nasti/nasti_lite_bram_ctrl.sv \
 	$(base_dir)/socip/util/arbiter.sv \
 	$(base_dir)/src/main/verilog/debug_system.sv \
 	$(osd_dir)/interconnect/common/debug_ring_expand.sv \
