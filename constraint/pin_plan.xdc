@@ -21,6 +21,8 @@ set_property PACKAGE_PIN C1 [get_ports spi_mosi]
 set_property IOSTANDARD LVCMOS33 [get_ports spi_mosi]
 set_property PACKAGE_PIN C2 [get_ports spi_miso]
 set_property IOSTANDARD LVCMOS33 [get_ports spi_miso]
+set_property PACKAGE_PIN E2 [get_ports sd_reset]
+set_property IOSTANDARD LVCMOS33 [get_ports sd_reset]
 
 # VGA
 set_property PACKAGE_PIN A4 [get_ports vga_red[3]]
