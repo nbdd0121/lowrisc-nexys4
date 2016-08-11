@@ -57,6 +57,9 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti/nasti_lite_bridge.sv \
 	$(base_dir)/socip/nasti/nasti_lite_reader.sv \
 	$(base_dir)/socip/nasti/nasti_lite_writer.sv \
+	$(base_dir)/socip/nasti/nasti_narrower.sv \
+	$(base_dir)/socip/nasti/nasti_narrower_reader.sv \
+	$(base_dir)/socip/nasti/nasti_narrower_writer.sv \
 	$(base_dir)/socip/nasti/nasti_mux.sv \
 	$(base_dir)/socip/nasti/nasti_slicer.sv \
 	$(base_dir)/socip/nasti/nasti_data_mover.sv \
@@ -209,7 +212,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard jump video
+EXAMPLES = hello trace boot dram sdcard jump flash video
 
 examples/Makefile:
 	-mkdir examples
@@ -228,10 +231,11 @@ $(EXAMPLES):  $(lowrisc_headers) | examples/Makefile
 clean:
 	$(info To clean everything, including the Vivado project, use 'make cleanall')
 	-rm -rf *.log *.jou $(junk)
-	$(MAKE) -C examples clean
+	-$(MAKE) -C examples clean
 
 cleanall: clean
 	-rm -fr $(project)
 	-rm -fr $(project_name)
+	-rm -fr examples
 
 .PHONY: clean cleanall
