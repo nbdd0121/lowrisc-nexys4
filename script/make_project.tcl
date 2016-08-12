@@ -43,6 +43,7 @@ set files [list \
                [file normalize $base_dir/src/main/verilog/chip_top.sv] \
                [file normalize $base_dir/src/main/verilog/vga_controller.sv] \
                [file normalize $base_dir/src/main/verilog/spi_wrapper.sv] \
+               [file normalize $base_dir/src/main/verilog/video_acc.sv] \
                [file normalize $base_dir/socip/nasti/channel.sv] \
                [file normalize $base_dir/socip/nasti/lite_nasti_reader.sv ] \
                [file normalize $base_dir/socip/nasti/lite_nasti_writer.sv ] \
@@ -58,6 +59,17 @@ set files [list \
                [file normalize $base_dir/socip/nasti/nasti_data_mover.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_bram_ctrl.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_lite_bram_ctrl.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_buf.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_channel.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_combiner.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_demux.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_mover.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_mux.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_slicer.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/stream_nasti_mover.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_crossbar.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_router.sv ] \
+               [file normalize $base_dir/socip/util/fifo.sv] \
                [file normalize $base_dir/socip/util/arbiter.sv ] \
                [file normalize $base_dir/src/main/verilog/debug_system.sv] \
                [file normalize $osd_dir/interconnect/common/debug_ring_expand.sv ] \

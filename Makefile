@@ -45,6 +45,7 @@ lowrisc_headers = \
 verilog_srcs = \
 	$(osd_dir)/interfaces/common/dii_channel.sv \
 	$(base_dir)/src/main/verilog/chip_top.sv \
+	$(base_dir)/src/main/verilog/video_acc.sv \
 	$(base_dir)/src/main/verilog/vga_controller.sv \
 	$(base_dir)/src/main/verilog/spi_wrapper.sv \
 	$(base_dir)/socip/nasti/channel.sv \
@@ -62,6 +63,17 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti/nasti_data_mover.sv \
 	$(base_dir)/socip/nasti/nasti_bram_ctrl.sv \
 	$(base_dir)/socip/nasti/nasti_lite_bram_ctrl.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_mover.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_buf.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_channel.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_combiner.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_demux.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_mux.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_slicer.sv \
+	$(base_dir)/socip/nasti-stream/stream_nasti_mover.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_crossbar.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_router.sv \
+	$(base_dir)/socip/util/fifo.sv \
 	$(base_dir)/socip/util/arbiter.sv \
 	$(base_dir)/src/main/verilog/debug_system.sv \
 	$(osd_dir)/interconnect/common/debug_ring_expand.sv \
@@ -209,7 +221,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard jump video
+EXAMPLES = hello trace boot dram sdcard jump video acc_and_mov
 
 examples/Makefile:
 	-mkdir examples
