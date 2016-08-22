@@ -58,6 +58,9 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti/nasti_lite_bridge.sv \
 	$(base_dir)/socip/nasti/nasti_lite_reader.sv \
 	$(base_dir)/socip/nasti/nasti_lite_writer.sv \
+	$(base_dir)/socip/nasti/nasti_narrower.sv \
+	$(base_dir)/socip/nasti/nasti_narrower_reader.sv \
+	$(base_dir)/socip/nasti/nasti_narrower_writer.sv \
 	$(base_dir)/socip/nasti/nasti_mux.sv \
 	$(base_dir)/socip/nasti/nasti_slicer.sv \
 	$(base_dir)/socip/nasti/nasti_data_mover.sv \
@@ -190,7 +193,7 @@ $(sim-comp): $(lowrisc_srcs) $(lowrisc_headers) $(verilog_srcs) $(verilog_header
 
 sim-elab = $(project_name)/$(project_name).sim/sim_1/behav/elaborate.log
 sim-elab: $(sim-elab)
-$(sim-elab): $(sim-comp) $(dpi_lib)
+$(sim-elab): $(sim-comp) $(dpi_lib) $(boot_mem)
 	cd $(project_name)/$(project_name).sim/sim_1/behav; source elaborate.sh > /dev/null
 	@echo "If error, see $(project_name)/$(project_name).sim/sim_1/behav/elaborate.log for more details."
 
@@ -221,7 +224,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard jump video acc_and_mov
+EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov
 
 examples/Makefile:
 	-mkdir examples
@@ -240,10 +243,11 @@ $(EXAMPLES):  $(lowrisc_headers) | examples/Makefile
 clean:
 	$(info To clean everything, including the Vivado project, use 'make cleanall')
 	-rm -rf *.log *.jou $(junk)
-	$(MAKE) -C examples clean
+	-$(MAKE) -C examples clean
 
 cleanall: clean
 	-rm -fr $(project)
 	-rm -fr $(project_name)
+	-rm -fr examples
 
 .PHONY: clean cleanall

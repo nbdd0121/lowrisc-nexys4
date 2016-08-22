@@ -42,8 +42,8 @@ set files [list \
                [file normalize $osd_dir/interfaces/common/dii_channel.sv ] \
                [file normalize $base_dir/src/main/verilog/chip_top.sv] \
                [file normalize $base_dir/src/main/verilog/vga_controller.sv] \
-               [file normalize $base_dir/src/main/verilog/spi_wrapper.sv] \
                [file normalize $base_dir/videox/video_acc.sv] \
+               [file normalize $base_dir/src/main/verilog/spi_wrapper.sv] \
                [file normalize $base_dir/socip/nasti/channel.sv] \
                [file normalize $base_dir/socip/nasti/lite_nasti_reader.sv ] \
                [file normalize $base_dir/socip/nasti/lite_nasti_writer.sv ] \
@@ -54,6 +54,9 @@ set files [list \
                [file normalize $base_dir/socip/nasti/nasti_lite_bridge.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_lite_reader.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_lite_writer.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_narrower.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_narrower_reader.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_narrower_writer.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_mux.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_slicer.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_data_mover.sv ] \
@@ -132,13 +135,12 @@ generate_target {instantiation_template} \
 create_ip -name axi_bram_ctrl -vendor xilinx.com -library ip -module_name axi_bram_ctrl_0
 set_property -dict [list \
                         CONFIG.DATA_WIDTH $io_data_width \
-                        CONFIG.ID_WIDTH {0} \
+                        CONFIG.ID_WIDTH $axi_id_width \
                         CONFIG.MEM_DEPTH {16384} \
-                        CONFIG.PROTOCOL {AXI4LITE} \
+                        CONFIG.PROTOCOL {AXI4} \
                         CONFIG.BMG_INSTANCE {EXTERNAL} \
                         CONFIG.SINGLE_PORT_BRAM {1} \
-                        CONFIG.SUPPORTS_NARROW_BURST {0} \
-                        CONFIG.ECC_TYPE {0} \
+                        CONFIG.SUPPORTS_NARROW_BURST {1} \
                        ] [get_ips axi_bram_ctrl_0]
 generate_target {instantiation_template} \
     [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_bram_ctrl_0/axi_bram_ctrl_0.xci]
@@ -173,7 +175,11 @@ set_property -dict [list \
                         CONFIG.MMCM_CLKOUT0_DIVIDE_F {5} \
                         CONFIG.RESET_PORT {resetn} \
                         CONFIG.CLKOUT1_JITTER {114.829} \
-                        CONFIG.CLKOUT1_PHASE_ERROR {98.575}] \
+                        CONFIG.CLKOUT1_PHASE_ERROR {98.575} \
+			CONFIG.CLKOUT2_DRIVES {BUFG} \
+			CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {60.000} \
+			CONFIG.CLKOUT2_USED {1} \
+			CONFIG.CLK_OUT2_PORT {clk_io_uart}] \
     [get_ips clk_wiz_0]
 generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs/sources_1/ip/clk_wiz_0_1/clk_wiz_0.xci]
 
@@ -201,6 +207,20 @@ set_property -dict [list \
     [get_ips axi_quad_spi_0]
 generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_quad_spi_0/axi_quad_spi_0.xci]
 
+# Quad SPI interface for XIP SPI Flash
+create_ip -name axi_quad_spi -vendor xilinx.com -library ip -module_name axi_quad_spi_1
+set_property -dict [list \
+                        CONFIG.C_USE_STARTUP {1} \
+                        CONFIG.C_SPI_MEMORY {3} \
+                        CONFIG.C_SPI_MODE {2} \
+                        CONFIG.C_XIP_MODE {1} \
+                        CONFIG.C_SPI_MEM_ADDR_BITS {32} \
+                        CONFIG.C_S_AXI4_ID_WIDTH $axi_id_width \
+                        CONFIG.C_SCK_RATIO {2} \
+                        CONFIG.C_TYPE_OF_AXI4_INTERFACE {1}] \
+    [get_ips axi_quad_spi_1]
+generate_target {instantiation_template} [get_files $proj_dir/$project_name.srcs/sources_1/ip/axi_quad_spi_1/axi_quad_spi_1.xci]
+
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
   create_fileset -constrset constrs_1
@@ -210,8 +230,9 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize "$origin_dir/constraint/pin_plan.xdc"]"
-set file_added [add_files -norecurse -fileset $obj $file]
+set files [list [file normalize "$origin_dir/constraint/pin_plan.xdc"] \
+	      [file normalize "$origin_dir/constraint/timing.xdc"]]
+set file_added [add_files -norecurse -fileset $obj $files]
 
 # generate all IP source code
 generate_target all [get_ips]
