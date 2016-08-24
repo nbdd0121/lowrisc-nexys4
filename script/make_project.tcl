@@ -62,6 +62,7 @@ set files [list \
                [file normalize $base_dir/socip/nasti/nasti_data_mover.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_bram_ctrl.sv ] \
                [file normalize $base_dir/socip/nasti/nasti_lite_bram_ctrl.sv ] \
+               [file normalize $base_dir/socip/nasti/nasti_rw_combiner.sv ] \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_buf.sv ] \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_channel.sv ] \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_combiner.sv ] \

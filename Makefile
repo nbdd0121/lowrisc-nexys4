@@ -66,6 +66,7 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti/nasti_data_mover.sv \
 	$(base_dir)/socip/nasti/nasti_bram_ctrl.sv \
 	$(base_dir)/socip/nasti/nasti_lite_bram_ctrl.sv \
+	$(base_dir)/socip/nasti/nasti_rw_combiner.sv \
 	$(base_dir)/socip/nasti-stream/nasti_stream_mover.sv \
 	$(base_dir)/socip/nasti-stream/nasti_stream_buf.sv \
 	$(base_dir)/socip/nasti-stream/nasti_stream_channel.sv \
