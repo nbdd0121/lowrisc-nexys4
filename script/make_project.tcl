@@ -74,6 +74,7 @@ set files [list \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_crossbar.sv ] \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_router.sv ] \
                [file normalize $base_dir/socip/util/fifo.sv] \
+               [file normalize $base_dir/socip/util/bram.sv] \
                [file normalize $base_dir/socip/util/arbiter.sv ] \
                [file normalize $base_dir/src/main/verilog/debug_system.sv] \
                [file normalize $osd_dir/interconnect/common/debug_ring_expand.sv ] \

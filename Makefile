@@ -78,6 +78,7 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti-stream/nasti_stream_crossbar.sv \
 	$(base_dir)/socip/nasti-stream/nasti_stream_router.sv \
 	$(base_dir)/socip/util/fifo.sv \
+	$(base_dir)/socip/util/bram.sv \
 	$(base_dir)/socip/util/arbiter.sv \
 	$(base_dir)/src/main/verilog/debug_system.sv \
 	$(osd_dir)/interconnect/common/debug_ring_expand.sv \
