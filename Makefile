@@ -42,10 +42,13 @@ lowrisc_headers = \
 	$(generated_dir)/dev_map.vh \
 	$(generated_dir)/dev_map.h \
 
+
 verilog_srcs = \
 	$(osd_dir)/interfaces/common/dii_channel.sv \
 	$(base_dir)/src/main/verilog/chip_top.sv \
 	$(base_dir)/videox/video_acc.sv \
+	$(base_dir)/videox/yuv422to444_noninterp.sv \
+	$(base_dir)/videox/yuv444toRGB.sv \
 	$(base_dir)/src/main/verilog/vga_controller.sv \
 	$(base_dir)/src/main/verilog/spi_wrapper.sv \
 	$(base_dir)/socip/nasti/channel.sv \
@@ -226,7 +229,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov
+EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov yuv422to444 yuv444toRGB
 
 examples/Makefile:
 	-mkdir examples

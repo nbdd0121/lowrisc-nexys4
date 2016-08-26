@@ -44,6 +44,8 @@ set files [list \
                [file normalize $base_dir/src/main/verilog/vga_controller.sv] \
                [file normalize $base_dir/videox/video_acc.sv] \
                [file normalize $base_dir/src/main/verilog/spi_wrapper.sv] \
+               [file normalize $base_dir/videox/yuv422to444_noninterp.sv] \
+               [file normalize $base_dir/videox/yuv444toRGB.sv] \
                [file normalize $base_dir/socip/nasti/channel.sv] \
                [file normalize $base_dir/socip/nasti/lite_nasti_reader.sv ] \
                [file normalize $base_dir/socip/nasti/lite_nasti_writer.sv ] \
