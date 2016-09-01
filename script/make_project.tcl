@@ -46,6 +46,7 @@ set files [list \
                [file normalize $base_dir/src/main/verilog/spi_wrapper.sv] \
                [file normalize $base_dir/videox/yuv422to444_noninterp.sv] \
                [file normalize $base_dir/videox/yuv444toRGB.sv] \
+               [file normalize $base_dir/videox/rgb32to16.sv] \
                [file normalize $base_dir/socip/nasti/channel.sv] \
                [file normalize $base_dir/socip/nasti/lite_nasti_reader.sv ] \
                [file normalize $base_dir/socip/nasti/lite_nasti_writer.sv ] \
@@ -75,6 +76,8 @@ set files [list \
                [file normalize $base_dir/socip/nasti-stream/stream_nasti_mover.sv ] \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_crossbar.sv ] \
                [file normalize $base_dir/socip/nasti-stream/nasti_stream_router.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_widener.sv ] \
+               [file normalize $base_dir/socip/nasti-stream/nasti_stream_narrower.sv ] \
                [file normalize $base_dir/socip/util/fifo.sv] \
                [file normalize $base_dir/socip/util/bram.sv] \
                [file normalize $base_dir/socip/util/arbiter.sv ] \

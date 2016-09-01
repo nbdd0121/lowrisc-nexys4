@@ -49,6 +49,7 @@ verilog_srcs = \
 	$(base_dir)/videox/video_acc.sv \
 	$(base_dir)/videox/yuv422to444_noninterp.sv \
 	$(base_dir)/videox/yuv444toRGB.sv \
+	$(base_dir)/videox/rgb32to16.sv \
 	$(base_dir)/src/main/verilog/vga_controller.sv \
 	$(base_dir)/src/main/verilog/spi_wrapper.sv \
 	$(base_dir)/socip/nasti/channel.sv \
@@ -80,6 +81,8 @@ verilog_srcs = \
 	$(base_dir)/socip/nasti-stream/stream_nasti_mover.sv \
 	$(base_dir)/socip/nasti-stream/nasti_stream_crossbar.sv \
 	$(base_dir)/socip/nasti-stream/nasti_stream_router.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_widener.sv \
+	$(base_dir)/socip/nasti-stream/nasti_stream_narrower.sv \
 	$(base_dir)/socip/util/fifo.sv \
 	$(base_dir)/socip/util/bram.sv \
 	$(base_dir)/socip/util/arbiter.sv \
@@ -229,7 +232,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov yuv422to444 yuv444toRGB
+EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov yuv422to444 yuv444toRGB rgb32to16
 
 examples/Makefile:
 	-mkdir examples
