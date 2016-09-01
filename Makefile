@@ -50,6 +50,14 @@ verilog_srcs = \
 	$(base_dir)/videox/yuv422to444_noninterp.sv \
 	$(base_dir)/videox/yuv444toRGB.sv \
 	$(base_dir)/videox/rgb32to16.sv \
+	$(base_dir)/videox/dct.sv \
+	$(base_dir)/videox/idct.sv \
+	$(base_dir)/videox/pipelined_idct.sv \
+	$(base_dir)/videox/pipelined_dct.sv \
+	$(base_dir)/videox/stream_dct_handler.sv \
+	$(base_dir)/videox/stream_dct.sv \
+	$(base_dir)/videox/stream_idct.sv \
+	$(base_dir)/videox/transpose.sv \
 	$(base_dir)/src/main/verilog/vga_controller.sv \
 	$(base_dir)/src/main/verilog/spi_wrapper.sv \
 	$(base_dir)/socip/nasti/channel.sv \
