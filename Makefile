@@ -232,7 +232,7 @@ program-updated: $(project_name)/$(project_name).runs/impl_1/chip_top.new.bit
 # Load examples
 #--------------------------------------------------------------------
 
-EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov yuv422to444 yuv444toRGB rgb32to16
+EXAMPLES = hello trace boot dram sdcard jump flash video acc_and_mov
 
 examples/Makefile:
 	-mkdir examples
