@@ -46,15 +46,11 @@ set files [list \
                [file normalize $base_dir/src/main/verilog/spi_wrapper.sv] \
                [file normalize $base_dir/videox/yuv422to444_noninterp.sv] \
                [file normalize $base_dir/videox/yuv444toRGB.sv] \
+               [file normalize $base_dir/videox/saturate.sv] \
                [file normalize $base_dir/videox/rgb32to16.sv] \
-               [file normalize $base_dir/videox/idct.sv] \
-               [file normalize $base_dir/videox/dct.sv] \
-               [file normalize $base_dir/videox/pipelined_dct.sv] \
-               [file normalize $base_dir/videox/pipelined_idct.sv] \
-               [file normalize $base_dir/videox/stream_dct_handler.sv] \
-               [file normalize $base_dir/videox/stream_dct.sv] \
+               [file normalize $base_dir/videox/stream_idct_1d.sv] \
                [file normalize $base_dir/videox/stream_idct.sv] \
-               [file normalize $base_dir/videox/transpose.sv] \
+               [file normalize $base_dir/videox/stream_transpose.sv] \
                [file normalize $base_dir/socip/nasti/channel.sv] \
                [file normalize $base_dir/socip/nasti/lite_nasti_reader.sv ] \
                [file normalize $base_dir/socip/nasti/lite_nasti_writer.sv ] \
